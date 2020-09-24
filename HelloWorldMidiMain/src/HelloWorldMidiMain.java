@@ -173,6 +173,70 @@ public class HelloWorldMidiMain extends PApplet {
 			
 			
 			}
+		
+			else if (key == '3')
+			{
+				//Pitch Probability
+				Integer[] songPitches = midiNotes.getPitches();
+				ArrayList<Integer> newSongPitches = new ArrayList<Integer>();
+				ProbabilityGenerator<Integer> melodyGenP = new ProbabilityGenerator<Integer>();
+				ProbabilityGenerator<Integer> probDistGenP = new ProbabilityGenerator<Integer>();
+				melodyGenP.train(songPitches);
+				
+				for(int i = 0; i<10000;i++) {
+					  
+					newSongPitches = melodyGenP.generator(20);
+					Integer[] newSongArray = new Integer[newSongPitches.size()];
+					for(int j =0; j < newSongPitches.size(); j++) {
+						newSongArray[j] = newSongPitches.get(j);
+					}
+				
+				    probDistGenP.train(newSongArray);
+				}
+				System.out.println("Pitches:\r\n" + 
+						"\r\n" + 
+						"-----Probability Distribution-----");
+				melodyGenP.getProbability();
+				System.out.println();
+				for(int i=0; i<melodyGenP.getProbability().size();i++) {
+					
+			     System.out.println("Token:"+ probDistGenP.alphabet.get(i) + "| Probability " + probDistGenP.getProbability().get(i));
+					
+				
+				}
+				
+				//Rhythms Probability
+				Double[] songRhythms = midiNotes.getRhythms();
+				ArrayList<Double> newSongRhythms = new ArrayList<Double>();
+				ProbabilityGenerator<Double> melodyGenR = new ProbabilityGenerator<Double>();
+				ProbabilityGenerator<Double> probDistGenR = new ProbabilityGenerator<Double>();
+				melodyGenR.train(songRhythms);
+				
+				for(int i = 0; i<10000;i++) {
+					  
+					newSongRhythms = melodyGenR.generator(20);
+					Double[] newSongArray = new Double[newSongRhythms.size()];
+					for(int j =0; j < newSongRhythms.size(); j++) {
+						newSongArray[j] = newSongRhythms.get(j);
+					}
+				
+				    probDistGenR.train(newSongArray);
+				}
+				System.out.println("Rhythms:\r\n" + 
+						"\r\n" + 
+						"-----Probability Distribution-----");
+				melodyGenR.getProbability();
+				System.out.println();
+				for(int i=0; i<melodyGenR.getProbability().size();i++) {
+					
+			     System.out.println("Token:"+ probDistGenR.alphabet.get(i) + "| Probability " + probDistGenR.getProbability().get(i));
+					
+				
+				}
+				
+				
+				
+			}
 	        
 
 		
