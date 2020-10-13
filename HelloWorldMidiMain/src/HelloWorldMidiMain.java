@@ -237,6 +237,25 @@ public class HelloWorldMidiMain extends PApplet {
 				
 				
 			}
+		
+			else if(key == '4') {
+				
+				MarkovGenerator<Integer> pitchGenerator = new MarkovGenerator<Integer>();
+
+				pitchGenerator.train(midiNotes.getPitchArray());
+				
+				System.out.println(pitchGenerator.alphabet);
+
+
+				
+				
+				
+					System.out.println(pitchGenerator.probabilityTable());
+					
+					
+				System.out.println(pitchGenerator.transitionTable);
+				
+			}
 	        
 
 		
