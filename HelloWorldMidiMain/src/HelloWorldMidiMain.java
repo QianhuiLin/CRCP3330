@@ -23,7 +23,7 @@ import jm.midi.*;
 
 import java.io.UnsupportedEncodingException;
 import java.net.*;
-
+import java.util.Scanner;
 //import javax.sound.midi.*;
 
 			//make sure this class name matches your file name, if not fix.
@@ -254,6 +254,17 @@ public class HelloWorldMidiMain extends PApplet {
 					
 					
 				System.out.println(pitchGenerator.transitionTable);
+				
+			}
+		
+		
+		
+		
+			else if(key == '5') {
+				
+				MarkovGenerator2<Integer> pitchGenerator = new MarkovGenerator2<Integer>(10);
+				Scanner input = new Scanner(System.in);
+				
 				
 			}
 	        
